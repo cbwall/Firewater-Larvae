@@ -109,6 +109,7 @@ AllData.stat.summary<-AllData.cor.out %>%
   mutate(chla = 11.43*((Abs_663_corr - Abs_750_corr) / PL) - 0.64*((Abs_630_corr - Abs_750_corr)/PL),
          chlc = 27.09*((Abs_630 - Abs_750_corr) / PL) - 3.63*((Abs_663_corr - Abs_750_corr)/PL),
          totalchl = chla+chlc,
+         chla.c2.rat = chla/chlc,
          daterun = Sys.Date()) %>%
   group_by(Sample.ID) %>%
   left_join(metadata, by="Sample.ID")%>%
@@ -120,7 +121,8 @@ write.csv(AllData.stat.summary, "output/chl.calc_summary.csv")
 # show as grouped by sample.ID (mean of technical replicates)
 AllData.normalized <- AllData.stat.summary %>%
   group_by(Sample.ID) %>%
-  summarise(mean.totalchl.ug.ml = mean(totalchl), 
+  summarise(mean.chla.c2.rat = mean(chla.c2.rat),
+            mean.totalchl.ug.ml = mean(totalchl), 
             sd = sd(totalchl), 
             CV=(sd(totalchl)/mean(totalchl)*100)) %>%
 left_join(metadata) %>%
@@ -130,6 +132,7 @@ left_join(metadata) %>%
 
 write.csv(AllData.normalized, "output/chl.norm.csv")
 
+
 ###### fix structure
 make.fac <- c("Sample.ID", "Treatment", "Level", "Rep")
 AllData.normalized[make.fac] <- lapply(AllData.normalized[make.fac], factor)
@@ -138,17 +141,26 @@ str(AllData.normalized)
 AllData.normalized$Treatment<- factor(AllData.normalized$Treatment, levels=c("control", "burned", "inorganic"))
 AllData.normalized$Level<- factor(AllData.normalized$Level, levels=c("control", "low", "medium", "high"))
 
-# plot
+####### plot total chl
 tot.chl.plot<- ggplot(AllData.normalized, aes(interaction(Treatment, Level, sep = "\n "), totalchl.ug.larv, fill=Treatment))+
   geom_jitter(width=0.1, aes(color=Treatment), alpha=0.7)+
   geom_boxplot(outlier.shape = NA, alpha=0.6)+
   scale_fill_manual(values=c("dodgerblue", "coral", "goldenrod")) +
   scale_color_manual(values=c("dodgerblue", "coral", "goldenrod")) +
   ylab(expression(paste("total chl a+c2 (\u00B5g larvae"^{-1},")")))+
-  xlab("Treatment State")+ theme_bw() + guides(fill="none", color="none")
+  xlab("Treatment State")+ theme_bw() + guides(color="none")
 
 tot.chl.plot
 dev.print(pdf, "figures/pyrolarv_chl.pdf", width = 7, height = 5)
 dev.off()
 
+
+####### chla/c2 ratio
+chl.rat.plot<- ggplot(AllData.normalized, aes(interaction(Treatment, Level, sep = "\n "), mean.chla.c2.rat, fill=Treatment))+
+  geom_jitter(width=0.1, aes(color=Treatment), alpha=0.7)+
+  geom_boxplot(outlier.shape = NA, alpha=0.6)+
+  scale_fill_manual(values=c("dodgerblue", "coral", "goldenrod")) +
+  scale_color_manual(values=c("dodgerblue", "coral", "goldenrod")) +
+  ylab(expression(paste("total chl a+c2 (\u00B5g larvae"^{-1},")")))+
+  xlab("Treatment State")+ theme_bw() + guides(color="none")
 
