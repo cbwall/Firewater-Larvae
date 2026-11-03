@@ -1,5 +1,5 @@
 "","Sample.ID","mean.totalchl.ug.ml","sd","CV","Species","Treatment","Level","Concentration","Rep","UniqueID","number.of.larvae","extract.vol.mL","totalchl.ug.larv"
-"1","BH_1",5.23937474173554,1.7798710432187,33.9710582073983,"Montipora capitata, larvae","burned","high","high (0.4 g/L)",1,"MC_BH_1_T0",50,0.5,0.0523937474173554
+"1","BH_1",3.98081585743802,NA,NA,"Montipora capitata, larvae","burned","high","high (0.4 g/L)",1,"MC_BH_1_T0",50,0.5,0.0398081585743802
 "2","BH_2",3.55826420454545,0.0470722737393192,1.3228999038123,"Montipora capitata, larvae","burned","high","high (0.4 g/L)",2,"MC_BH_2_T0",50,0.5,0.0355826420454545
 "3","BH_3",3.71903383264463,0.165330039035074,4.44551048672517,"Montipora capitata, larvae","burned","high","high (0.4 g/L)",3,"MC_BH_3_T0",50,0.5,0.0371903383264463
 "4","BH_4",3.58405449380165,0.251483111114766,7.01672118963833,"Montipora capitata, larvae","burned","high","high (0.4 g/L)",4,"MC_BH_4_T0",50,0.5,0.0358405449380165
@@ -15,7 +15,7 @@
 "14","CO_2",3.08255655991735,0.0623758760800816,2.0235111624928,"Montipora capitata, larvae","control","control","control (0.00 g/L)",2,"MC_CO_2_T0",50,0.5,0.0308255655991736
 "15","CO_3",3.05078486570248,0.037853588224263,1.2407819590893,"Montipora capitata, larvae","control","control","control (0.00 g/L)",3,"MC_CO_3_T0",50,0.5,0.0305078486570248
 "16","CO_4",2.95528383264463,0.120887501258845,4.09055468457881,"Montipora capitata, larvae","control","control","control (0.00 g/L)",4,"MC_CO_4_T0",50,0.5,0.0295528383264463
-"17","IH_1",4.60620841942149,1.31475110439132,28.5430224747938,"Montipora capitata, larvae","inorganic","high","high (0.4 g/L)",1,"MC_IH_1_T0",50,0.5,0.0460620841942149
+"17","IH_1",3.67653899793388,NA,NA,"Montipora capitata, larvae","inorganic","high","high (0.4 g/L)",1,"MC_IH_1_T0",50,0.5,0.0367653899793388
 "18","IH_2",3.72929726239669,0.210364267402998,5.64085543740764,"Montipora capitata, larvae","inorganic","high","high (0.4 g/L)",2,"MC_IH_2_T0",50,0.5,0.0372929726239669
 "19","IH_3",3.48070738636364,0.0931437868482405,2.67600164303238,"Montipora capitata, larvae","inorganic","high","high (0.4 g/L)",3,"MC_IH_3_T0",50,0.5,0.0348070738636364
 "20","IH_4",3.42107928719008,0.062332047147364,1.8219994894816,"Montipora capitata, larvae","inorganic","high","high (0.4 g/L)",4,"MC_IH_4_T0",50,0.5,0.0342107928719008

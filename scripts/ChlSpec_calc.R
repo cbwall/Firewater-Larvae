@@ -99,10 +99,13 @@ AllData.cor <- AllData.df %>%
     Abs_750_corr = Abs_750 - blank_vals$blank_750
   )
 
+AllData.cor.out<- AllData.cor %>% 
+  filter(!well %in% c("A01", "C01")) # very high and noisy chla measurements for sample BH_1 and IH_1
+
 ### Run chla analysis ### 
 # chl from Jeffry and Humphreys
 # show per well values (technical replicates)
-AllData.stat.summary<-AllData.cor %>%
+AllData.stat.summary<-AllData.cor.out %>%
   mutate(chla = 11.43*((Abs_663_corr - Abs_750_corr) / PL) - 0.64*((Abs_630_corr - Abs_750_corr)/PL),
          chlc = 27.09*((Abs_630 - Abs_750_corr) / PL) - 3.63*((Abs_663_corr - Abs_750_corr)/PL),
          totalchl = chla+chlc,
@@ -134,7 +137,6 @@ str(AllData.normalized)
 
 AllData.normalized$Treatment<- factor(AllData.normalized$Treatment, levels=c("control", "burned", "inorganic"))
 AllData.normalized$Level<- factor(AllData.normalized$Level, levels=c("control", "low", "medium", "high"))
-
 
 # plot
 tot.chl.plot<- ggplot(AllData.normalized, aes(interaction(Treatment, Level, sep = "\n "), totalchl.ug.larv, fill=Treatment))+
